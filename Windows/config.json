@@ -9,7 +9,7 @@
         "port":80,
         "firewallOpeningEnabled":true,
         "sslRedirectEnabled":true,
-        "publicHost":"****replace me****",
+        "publicHost":"3.15.160.40",
         "publicPort":80,
         "sslEnabled":false,
         "sslPort":443
@@ -17,13 +17,13 @@
     "identityStore":{
         "_type":"identityStoreType",
         "type":"local",
-        "domain":"****Domain Name Here****",
-        "nickname":"****Domain Nickname Here****"
+        "domain":"josh.com",
+        "nickname":"josh.com"
     }
 },
 "topologyVersion":{
     "nodes":{
-        "****insert nodeId (lowercase) here****": {
+        "jtableautest1": {
             "services": {
                 "filestore": {
                     "instances":[
