@@ -41,6 +41,10 @@ Invoke-WebRequest https://downloads.tableau.com/esdalt/2020.2.3/TableauServer-64
 Invoke-WebRequest https://downloads.tableau.com/esdalt/2020.2.3/TableauServerTabcmd-64bit-2020-2-3.exe -OutFile "Tableau_Server_TabCMD-2020.2.3.exe"
 Invoke-WebRequest https://downloads.tableau.com/esdalt/2020.2.2/tableau_powertools/Tabcmt-32bit-2020-2-2.exe -OutFile "Tableau_Server_TabCMT-2020.2.2.exe"
 Invoke-WebRequest https://raw.githubusercontent.com/tableau/server-install-script-samples/master/windows/tsm/SilentInstaller/SilentInstaller.py -OutFile "Tableau_Silent_Installer.py"
+Invoke-WebRequest https://raw.githubusercontent.com/jirizarry426/Terraform-Playground/main/Windows/bootstrap.json -OutFile "bootstrap.json"
+Invoke-WebRequest https://raw.githubusercontent.com/jirizarry426/Terraform-Playground/main/Windows/config.json -OutFile "config.json"
+Invoke-WebRequest https://raw.githubusercontent.com/jirizarry426/Terraform-Playground/main/Windows/secrets.json -OutFile "secrets.json"
+Invoke-WebRequest https://raw.githubusercontent.com/jirizarry426/Terraform-Playground/main/Windows/reg.json -OutFile "reg.json"
 Set-ExecutionPolicy -executionpolicy restricted 
 </powershell> 
 EOF
