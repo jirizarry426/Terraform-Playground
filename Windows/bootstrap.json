@@ -1,0 +1,6 @@
+{
+    "secretsFile": "secrets.json",
+    "registrationFile": "reg.json",
+    "configFile": "config.json",
+    "installer": "Tableau_Server_TabCMT-2020.2.2.exe"
+}
