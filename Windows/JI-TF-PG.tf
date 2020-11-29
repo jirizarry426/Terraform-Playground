@@ -44,7 +44,7 @@ Invoke-WebRequest https://raw.githubusercontent.com/tableau/server-install-scrip
 Invoke-WebRequest https://raw.githubusercontent.com/jirizarry426/Terraform-Playground/main/Windows/bootstrap.json -OutFile "bootstrap.json"
 Invoke-WebRequest https://raw.githubusercontent.com/jirizarry426/Terraform-Playground/main/Windows/config.json -OutFile "config.json"
 Invoke-WebRequest https://raw.githubusercontent.com/jirizarry426/Terraform-Playground/main/Windows/secrets.json -OutFile "secrets.json"
-Invoke-WebRequest https://raw.githubusercontent.com/jirizarry426/Terraform-Playground/main/Windows/reg.json -OutFile "reg.json"
+Invoke-WebRequest https://raw.githubusercontent.com/jirizarry426/Terraform-Playground/main/Windows/reg_templ.json -OutFile "reg.json"
 Set-ExecutionPolicy -executionpolicy restricted 
 </powershell> 
 EOF
