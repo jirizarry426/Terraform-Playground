@@ -17,6 +17,7 @@ data "aws_ami" "ec2" {
     name   = "root-device-type"
     values = ["ebs"]
 
+
   }
 
   filter {
@@ -28,7 +29,7 @@ data "aws_ami" "ec2" {
 
 resource "aws_instance" "tableau" {
   ami           = data.aws_ami.ec2.id
-  instance_type = "t2.micro"
+  instance_type = "t2.xlarge"
   key_name      = "tftableau"
   user_data     = <<EOF
 <powershell>
@@ -40,33 +41,30 @@ Invoke-WebRequest https://raw.githubusercontent.com/tableau/server-install-scrip
 Invoke-WebRequest https://raw.githubusercontent.com/jirizarry426/Terraform-Playground/main/Windows/bootstrap.json -OutFile "bootstrap.json"
 Invoke-WebRequest https://raw.githubusercontent.com/jirizarry426/Terraform-Playground/main/Windows/config.json -OutFile "config.json"
 Invoke-WebRequest https://raw.githubusercontent.com/jirizarry426/Terraform-Playground/main/Windows/secrets.json -OutFile "secrets.json"
-Invoke-WebRequest https://raw.githubusercontent.com/jirizarry426/Terraform-Playground/main/Windows/reg_templ.json -OutFile "reg.json"
-Invoke-WebRequest https://www.python.org/ftp/python/3.9.0/python-3.9.0-amd64.exe -OutFile "Python3.9.0.exe"
-Invoke-WebRequest https://downloads.tableau.com/esdalt/2020.2.3/TableauServer-64bit-2020-2-3.exe -OutFile "Tableau_Server-2020.2.3.exe"
-Invoke-WebRequest https://downloads.tableau.com/esdalt/2020.2.3/TableauServerTabcmd-64bit-2020-2-3.exe -OutFile "Tableau_Server_TabCMD-2020.2.3.exe"
-Invoke-WebRequest https://downloads.tableau.com/esdalt/2020.2.2/tableau_powertools/Tabcmt-32bit-2020-2-2.exe -OutFile "Tableau_Server_TabCMT-2020.2.2.exe"
-.\Tableau_Silent_Installer.py --bootstrapFile C:\install_tableau\bootstrap.json
+Invoke-WebRequest https://raw.githubusercontent.com/jirizarry426/Terraform-Playground/main/Windows/reg.json -OutFile "reg.json"
+Invoke-WebRequest https://www.python.org/ftp/python/3.9.0/python-3.9.0-amd64.exe -OutFile "python-3.9.0.exe"
+.\python-3.9.0.exe /quiet InstallAllUsers=1 PrependPath=1 Include_test=0
+Invoke-WebRequest https://downloads.tableau.com/esdalt/2020.3.3/TableauServer-64bit-2020-3-3.exe -OutFile "Tableau_Server-2020.3.3_20203.20.1110.1623.exe"
+Invoke-WebRequest https://downloads.tableau.com/esdalt/2020.3.3/TableauServerTabcmd-64bit-2020-3-3.exe -OutFile "TabCMD-2020.3.3_20203.20.1110.1623.exe"
+Invoke-WebRequest https://downloads.tableau.com/esdalt/2020.3.0/tableau_powertools/Tabcmt-32bit-2020-3-0.exe -OutFile "TabCMT-2020.3.0_20203.20.0807.2057.exe"
+.\Tableau_Silent_Installer.py --bootstrapFile bootstrap.json
 Set-ExecutionPolicy -executionpolicy restricted 
 </powershell> 
 EOF
 
   tags = {
-    Name = "tableau_server_2020.2.2"
+    Name = "tableau_server_2020.3.3"
   }
 
   vpc_security_group_ids = [
     "sg-c43d66a6"
   ]
-
-  resource "aws_ebs_volume" "tableau" {
-  availability_zone = "us-west-2a"
-  size              = 100
-
-  tags = {
-    Name = "Tableau"
+  root_block_device {
+    volume_size = 300
   }
-}
 
 }
+
+
 
 
