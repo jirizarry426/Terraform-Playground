@@ -2,5 +2,5 @@
     "secretsFile": "secrets.json",
     "registrationFile": "reg.json",
     "configFile": "config.json",
-    "installer": "Tableau_Server-2020.2.3.exe"
+    "installer": "Tableau_Server-2020.3.3_20203.20.1110.1623.exe"
 }
