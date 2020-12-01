@@ -33,7 +33,10 @@ resource "aws_instance" "tableau" {
   key_name      = "tftableau"
   user_data     = <<EOF
 <powershell>
-Set-ExecutionPolicy -executionpolicy unrestricted 
+Set-ExecutionPolicy -executionpolicy unrestricted
+$TABLEAUTFTMP = ?pt9*$DRz9x3d=+kbjM&!Xb?G
+New-LocalUser "tableautf" -Password $TABLEAUTFTMP -FullName "tableautf" -Description "To Run Tableau Silent Installer; To be deleted after completetion"
+Add-LocalGroupmember -Group "Administrators" -Member "tableautf" 
 New-Item -ItemType directory -Path C:\install_tableau
 cd C:\install_tableau
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
@@ -48,6 +51,12 @@ Invoke-WebRequest https://downloads.tableau.com/esdalt/2020.3.3/TableauServer-64
 Invoke-WebRequest https://downloads.tableau.com/esdalt/2020.3.3/TableauServerTabcmd-64bit-2020-3-3.exe -OutFile "TabCMD-2020.3.3_20203.20.1110.1623.exe"
 Invoke-WebRequest https://downloads.tableau.com/esdalt/2020.3.0/tableau_powertools/Tabcmt-32bit-2020-3-0.exe -OutFile "TabCMT-2020.3.0_20203.20.0807.2057.exe"
 .\Tableau_Silent_Installer.py --bootstrapFile bootstrap.json
+tsm security external-ssl enable --cert-file CertFile.crt --key-file KeyFile.key --chain-File ChainFile.crt
+tsm restart
+.\TabCMT-2020.3.0_20203.20.0807.2057.exe /install /quiet /norestart
+tabcmt-runner encryption <encryption key>
+.\TabCMD-2020.3.3_20203.20.1110.1623.exe /install /quiet /norestart ACCEPTEULA=1 INSTALLDIR=<PATH-TO-Directory>
+Remove-LocalUser -Name "tableautf"
 Set-ExecutionPolicy -executionpolicy restricted 
 </powershell> 
 EOF
