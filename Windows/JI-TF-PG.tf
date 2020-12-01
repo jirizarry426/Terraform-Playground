@@ -54,8 +54,10 @@ Invoke-WebRequest https://downloads.tableau.com/esdalt/2020.3.0/tableau_powertoo
 tsm security external-ssl enable --cert-file CertFile.crt --key-file KeyFile.key --chain-File ChainFile.crt
 tsm restart
 .\TabCMT-2020.3.0_20203.20.0807.2057.exe /install /quiet /norestart
-tabcmt-runner encryption <encryption key>
 .\TabCMD-2020.3.3_20203.20.1110.1623.exe /install /quiet /norestart ACCEPTEULA=1 INSTALLDIR=<PATH-TO-Directory>
+cd ..
+cd '.\Program Files (x86)\Tableau\Tableau Content Migration Tool\'
+tabcmt-runner encryption <encryption key>
 Remove-LocalUser -Name "tableautf"
 Set-ExecutionPolicy -executionpolicy restricted 
 </powershell> 
